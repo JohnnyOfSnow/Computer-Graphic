@@ -5,6 +5,8 @@
 
 #include <windows.h>
 #include <gl/gl.h>
+#include <GL/glut.h>
+#include <GL/glut.h>
 
 
 /**************************
@@ -83,17 +85,57 @@ int WINAPI WinMain (HINSTANCE hInstance,
             glClearColor (0.0f, 0.0f, 0.0f, 0.0f);
             glClear (GL_COLOR_BUFFER_BIT);
             
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();  
+
+            gluLookAt (0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+            
+            
+            
             glPushMatrix ();
+            
+
             glBegin (GL_POLYGON);
                     glColor3f (0.0f, 1.0f, 1.0f);  glVertex3f (1.0f, 0.0f,1.0f);
+                                                   glVertex3f (1.0f, 0.0f,0.0f);
+                                                   glVertex3f (1.0f, 1.0f,0.0f);
+                                                   glVertex3f (1.0f, 1.0f,1.0f);        
+            glEnd ();
+            glBegin (GL_POLYGON);
+                    glColor3f (1.0f, 1.0f, 1.0f);  glVertex3f (1.0f, 1.0f,1.0f);
+                                                   glVertex3f (1.0f, 1.0f,0.0f);
+                                                   glVertex3f (0.0f, 1.0f,0.0f);
+                                                   glVertex3f (0.0f, 1.0f,1.0f);
+            glEnd ();
+            glBegin (GL_POLYGON);
+                    glColor3f (1.0f, 1.0f, 0.0f);  glVertex3f (0.0f, 1.0f,1.0f);
+                                                   glVertex3f (0.0f, 1.0f,0.0f);
+                                                   glVertex3f (0.0f, 0.0f,0.0f);
+                                                   glVertex3f (0.0f, 0.0f,1.0f);
+            glEnd ();
+            glBegin (GL_POLYGON);
+                    glColor3f (0.0f, 1.0f, 0.0f);  glVertex3f (0.0f, 0.0f,1.0f);
+                                                   glVertex3f (0.0f, 0.0f,0.0f);
+                                                   glVertex3f (1.0f, 0.0f,0.0f);
+                                                   glVertex3f (1.0f, 0.0f,1.0f);
+            glEnd ();
+            
+            glBegin (GL_POLYGON);
+                                                   glVertex3f (1.0f, 0.0f,1.0f);
+                                                   glVertex3f (1.0f, 1.0f,1.0f);
+                                                   glVertex3f (0.0f, 1.0f,1.0f);
+                                                   glVertex3f (0.0f, 0.0f,1.0f);
+            glEnd ();
+            
+            glBegin (GL_POLYGON);
                     glColor3f (0.0f, 0.0f, 1.0f);  glVertex3f (1.0f, 0.0f,0.0f);
                     glColor3f (1.0f, 0.0f, 1.0f);  glVertex3f (1.0f, 1.0f,0.0f);
-                    glColor3f (1.0f, 1.0f, 1.0f);  glVertex3f (1.0f, 1.0f,1.0f);
                     glColor3f (1.0f, 0.0f, 0.0f);  glVertex3f (0.0f, 1.0f,0.0f);
-                    glColor3f (1.0f, 1.0f, 0.0f);  glVertex3f (0.0f, 1.0f,1.0f);
-                    glColor3f (0.0f, 1.0f, 0.0f);  glVertex3f (0.0f, 0.0f,1.0f);
                     glColor3f (0.0f, 0.0f, 0.0f);  glVertex3f (0.0f, 0.0f,0.0f);
             glEnd ();
+               
+                
+                     
             /**
             glRotatef (theta, 0.0f, 0.0f, 1.0f);
             glBegin (GL_TRIANGLES);
@@ -102,6 +144,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
             glColor3f (0.0f, 0.0f, 1.0f);   glVertex2f (-0.87f, -0.5f);
             glEnd ();*/
             glPopMatrix ();
+            
 
             SwapBuffers (hDC);
 

@@ -18,7 +18,11 @@
 
 static int slices = 16;
 static int stacks = 16;
-
+static int Earthday = 1;
+static int WaterPlantday = 20;
+static int GoldPlantday = 3;
+static int FirePlantday = 5;
+static int Sunday = 11;
 /* GLUT callback Handlers */
 
 static void 
@@ -43,19 +47,24 @@ display(void)
     const double b = t*45.0; //調金星公轉速度 
     const double c = t*30.0; //調水星公轉速度 
     const double d = t*20.0; //調火星公轉速度 
-    
+    Earthday = (Earthday + 1) % 360; //調地球自轉角度吧?  
+    WaterPlantday = (WaterPlantday + 1) % 360; //調水星自轉角度吧?  
+    GoldPlantday = (GoldPlantday + 20)% 360; //調金星自轉角度吧? 
+    FirePlantday = (FirePlantday + 10)% 360; //調火星自轉角度吧?
+    Sunday = (Sunday + 5) % 360;//調太陽自轉角度吧?
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glColor3d(1,0,0);
     glEnable(GL_DEPTH_TEST);
     glClearColor (0.0, 0.0, 0.0, 0.0);
-   
+
+  
 
      glPushMatrix();                            //太陽
         glColor3d(1,0,0);
             glTranslatef(0.0, 0.0, -20.0);
-            glRotatef(a, 0.2,1.0, 0.0); //自轉 
-            glutWireSphere(0.5,slices,stacks);
+            glRotatef(Sunday, 0.2,3.0, 0.0); //自轉 (速度, 旋轉向量)
+            glutWireSphere(3,slices,stacks);
     glPopMatrix();
     
     glPushMatrix();                            //水星 
@@ -63,7 +72,7 @@ display(void)
             glTranslatef(0.0, 0.0, -20.0);
             glRotatef(c, 0.2,1.0, 0.0); //公轉 
            glTranslatef(0.0, 0.0, 4.0);  
-           glRotatef(0.0, 0.0, 0.0, 1.0); //自轉 
+           glRotatef(WaterPlantday, 0.0, 0.0, 1.0); //自轉 (速度, 旋轉向量)
            glutSolidSphere(0.06,slices,stacks);
     glPopMatrix();
     
@@ -74,7 +83,7 @@ display(void)
             glTranslatef(0.0, 0.0, -20.0);
             glRotatef(b, 0.2,1.0, 0.0); //公轉 
            glTranslatef(0.0, 0.0, 6.0);  
-           glRotatef(1.2, 0.0, 0.0, 1.0); //自轉 
+           glRotatef(GoldPlantday, 0.0, 1.0, 1.0); //自轉 (速度, 旋轉向量)
            glutWireSphere(0.86,slices,stacks);
     glPopMatrix();
     
@@ -83,7 +92,7 @@ display(void)
             glTranslatef(0.0, 0.0, -20.0);
             glRotatef(a, 0.2,1.0, 0.0); //公轉 
            glTranslatef(0.0, 0.0, 7.0);  
-           glRotatef(0.5, 0.0, 0.0, 1.0); //自轉 
+           glRotatef(Earthday, 0.0, 0.0, 1.0); //自轉 (速度, 旋轉向量)
            glutSolidSphere(1.0,slices,stacks);
     glPopMatrix();
     
@@ -92,7 +101,7 @@ display(void)
             glTranslatef(0.0, 0.0, -20.0);
             glRotatef(d, 0.2,1.0, 0.0); //公轉 
            glTranslatef(0.0, 0.0, 9.0);  
-           glRotatef(0.5, 0.0, 0.0, 1.0); //自轉 
+           glRotatef(FirePlantday, 0.0, 0.0, 1.0); //自轉 (速度, 旋轉向量)
            glutWireSphere(0.15,slices,stacks);
     glPopMatrix();
     

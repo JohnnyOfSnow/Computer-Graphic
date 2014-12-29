@@ -15,7 +15,8 @@
 #include <GL/glut.h>
 
 #include <stdlib.h>
-
+#include <math.h>
+#define GL_PI = 3.14;
 static int slices = 16;
 static int stacks = 16;
 static int Earthday = 1;
@@ -23,6 +24,14 @@ static int WaterPlantday = 20;
 static int GoldPlantday = 3;
 static int FirePlantday = 5;
 static int Sunday = 11;
+const int n = 1000;
+const GLfloat R = 0.5f;
+const GLfloat Pi = 3.1415926536f;
+float radius = 5.0f;     //radious??半?
+float step = 0.1f;
+float x;
+float y;
+float angle;
 /* GLUT callback Handlers */
 
 static void 
@@ -70,42 +79,100 @@ display(void)
     glPushMatrix();                            //水星 
         glColor3d(0,1,1);
             glTranslatef(0.0, 0.0, -20.0);
-            glRotatef(c, 0.2,1.0, 0.0); //公轉 
+            glRotatef(c, 0.0,1.0, 0.0); //公轉 (繞y軸轉)
            glTranslatef(0.0, 0.0, 4.0);  
            glRotatef(WaterPlantday, 0.0, 0.0, 1.0); //自轉 (速度, 旋轉向量)
            glutSolidSphere(0.06,slices,stacks);
     glPopMatrix();
     
+    glBegin(GL_LINE_STRIP);   //水星 的軌道 
+    glColor3d(0,0,1);
+      radius = 4.0f;     //radious
+      step = 0.1f;        //step
+      for(angle = 0.0f; angle <= (2.0f*3.14159f); angle += step){
+        x = radius *sin(angle);
+        y = radius *cos(angle);
+
+       // Specify the point and move the Z value up a little	
+       glVertex3f(x , 0, -20.0f + y);
+    }
+    glEnd();
    
-    
     glPushMatrix();                            //金星 
         glColor3d(1,1,0);
             glTranslatef(0.0, 0.0, -20.0);
-            glRotatef(b, 0.2,1.0, 0.0); //公轉 
+            glRotatef(b, 0.0,1.0, 0.0); //公轉 (繞y軸轉)
            glTranslatef(0.0, 0.0, 6.0);  
            glRotatef(GoldPlantday, 0.0, 1.0, 1.0); //自轉 (速度, 旋轉向量)
            glutWireSphere(0.86,slices,stacks);
     glPopMatrix();
     
+    glBegin(GL_LINE_STRIP);   //金星 的軌道 
+      glColor3d(0,1,1);
+      x = 0.0f;
+      y = 0.0f;
+    
+      radius = 6.0f;     //radius
+      step = 0.1f;        //step
+      for(angle = 0.0f; angle <= (2.0f*3.14159f); angle += step){
+        x = radius *sin(angle);
+        y = radius *cos(angle);
+
+       // Specify the point and move the Z value up a little	
+       glVertex3f(x , 0, -20.0f + y);
+    } 
+    glEnd();
+    
+    
      glPushMatrix();                            //地球
         glColor3d(0,0,1);
             glTranslatef(0.0, 0.0, -20.0);
-            glRotatef(a, 0.2,1.0, 0.0); //公轉 
+            glRotatef(a, 0.0,1.0, 0.0); //公轉 (繞y軸轉)
            glTranslatef(0.0, 0.0, 7.0);  
            glRotatef(Earthday, 0.0, 0.0, 1.0); //自轉 (速度, 旋轉向量)
            glutSolidSphere(1.0,slices,stacks);
     glPopMatrix();
     
+    glBegin(GL_LINE_STRIP);   //地球 的軌道 
+      glColor3d(1,0,0);
+      x = 0.0f;
+      y = 0.0f;
+    
+      radius = 7.0f;     //radius
+      step = 0.1f;        //step
+      for(angle = 0.0f; angle <= (2.0f*3.14159f); angle += step){
+        x = radius *sin(angle);
+        y = radius *cos(angle);
+
+       // Specify the point and move the Z value up a little	
+       glVertex3f(x , 0, -20.0f + y); // x-z軸圓 
+    }
+    glEnd();
+    
+    glBegin(GL_LINE_STRIP);   //火星 的軌道 
+    glColor3d(0,1,0);
+    x = 0.0f;
+    y = 0.0f;
+    
+      radius = 9.0f;     //radius
+      step = 0.1f;        //step?
+      for(angle = 0.0f; angle <= (2.0f*3.14159f); angle += step){
+        x = radius *sin(angle);
+        y = radius *cos(angle);
+
+       // Specify the point and move the Z value up a little	
+       glVertex3f(x , 0, -20.0f + y);  // x-z軸圓 
+    }
+    glEnd();
+    
     glPushMatrix();                            //火星 
         glColor3d(1,0,0);
             glTranslatef(0.0, 0.0, -20.0);
-            glRotatef(d, 0.2,1.0, 0.0); //公轉 
+            glRotatef(d, 0.0,1.0, 0.0); //公轉 (繞y軸轉)
            glTranslatef(0.0, 0.0, 9.0);  
            glRotatef(FirePlantday, 0.0, 0.0, 1.0); //自轉 (速度, 旋轉向量)
            glutWireSphere(0.15,slices,stacks);
     glPopMatrix();
-    
-    
     glutSwapBuffers();
     
 }
@@ -197,4 +264,3 @@ main(int argc, char *argv[])
 
     return EXIT_SUCCESS;
 }
-

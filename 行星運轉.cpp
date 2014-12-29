@@ -70,7 +70,7 @@ display(void)
   
 
      glPushMatrix();                            //太陽
-        glColor3d(1,0,0);
+        glColor3d(1,0.5,0);
             glTranslatef(0.0, 0.0, -20.0);
             glRotatef(Sunday, 0.2,3.0, 0.0); //自轉 (速度, 旋轉向量)
             glutWireSphere(3,slices,stacks);

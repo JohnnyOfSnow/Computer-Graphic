@@ -53,20 +53,17 @@ resize(int width, int height)
 
 void plantPrint(void){
     const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
-    const double a = t*90.0; //調地球公轉速度 
-    const double b = t*45.0; //調金星公轉速度 
-    const double c = t*30.0; //調水星公轉速度 
-    const double d = t*20.0; //調火星公轉速度 
+    const double a = t*30.0; //調地球公轉速度 
+    const double b = t*18.0; //調金星公轉速度 
+    const double c = t*120.0; //調水星公轉速度 
+    const double d = t*60.0; //調火星公轉速度 
     Earthday = (Earthday + 1) % 360; //調地球自轉角度吧?  
     WaterPlantday = (WaterPlantday + 1) % 360; //調水星自轉角度吧?  
     GoldPlantday = (GoldPlantday + 20)% 360; //調金星自轉角度吧? 
     FirePlantday = (FirePlantday + 10)% 360; //調火星自轉角度吧?
     Sunday = (Sunday + 5) % 360;//調太陽自轉角度吧?
     
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glColor3d(1,0,0);
-    glEnable(GL_DEPTH_TEST);
-    glClearColor (0.0, 0.0, 0.0, 0.0);
+    
 
   
 
@@ -179,6 +176,17 @@ void plantPrint(void){
 static void 
 display(void)
 {
+             
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glColor3d(1,0,0);
+    glEnable(GL_DEPTH_TEST);
+    glClearColor (0.0, 0.0, 0.0, 0.0);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(-10, 10, -10, 10, -10, 10);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(1.0, 3.0, -20.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0);
     plantPrint();
     glutSwapBuffers();
     

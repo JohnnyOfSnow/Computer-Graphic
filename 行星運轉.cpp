@@ -183,7 +183,7 @@ void plantPrint(void){
     
       radius = 9.0f;     //radius
       step = 0.1f;        //step?
-      for(i = -10.0f; i <= 10.0f; i += step){
+      for(i = -20.0f; i <= 10.0f; i += step){
         	
        glVertex3f(i , 0, 0);  // x-z軸圓 
        
@@ -198,7 +198,7 @@ void plantPrint(void){
     
       radius = 9.0f;     //radius
       step = 0.1f;        //step?
-      for(j = -10.0f; j <= 10.0f; j += step){
+      for(j = -20.0f; j <= 10.0f; j += step){
         	
        glVertex3f(0 , j, 0);  // x-z軸圓 
        
@@ -213,7 +213,7 @@ void plantPrint(void){
     
       radius = 9.0f;     //radius
       step = 0.1f;        //step?
-      for(k = -10.0f; k <= 10.0f; k += step){
+      for(k = -30.0f; k <= 10.0f; k += step){
         	
        glVertex3f(0 , 0, k);  
        
@@ -240,7 +240,7 @@ display(void)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glViewport(0,240,320,240);
-    gluLookAt(2.0, 10.0, -20.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0);
+    gluLookAt(2.0, 10.0, -20.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0); // 上視圖 
     
     plantPrint();
     
@@ -248,18 +248,23 @@ display(void)
     glLoadIdentity();
     
     glViewport(0,0,320,240);
-    gluLookAt(0.0, 0.0, -10.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0);
+    gluLookAt(0.0, 0.0, -10.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0); // 正視圖 
     
     plantPrint();
     
     glLoadIdentity();
     
     glViewport(320,0,320,240);
-    gluLookAt(1.5, 1.5, -10.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0);
+    gluLookAt(1.5, 1.5, -10.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0); // 透視圖 
     
     plantPrint();
     
+    glLoadIdentity();
     
+    glViewport(320,240,320,240);
+    gluLookAt(0.0, 0.0, -30.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0); // 右視圖 
+    
+    plantPrint();
     
     
     

@@ -32,6 +32,8 @@ float step = 0.1f;
 float x;
 float y;
 float angle;
+
+void plantPrint(void);
 /* GLUT callback Handlers */
 
 static void 
@@ -48,9 +50,8 @@ resize(int width, int height)
     glLoadIdentity() ;
 }
 
-static void 
-display(void)
-{
+
+void plantPrint(void){
     const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
     const double a = t*90.0; //調地球公轉速度 
     const double b = t*45.0; //調金星公轉速度 
@@ -173,6 +174,12 @@ display(void)
            glRotatef(FirePlantday, 0.0, 0.0, 1.0); //自轉 (速度, 旋轉向量)
            glutWireSphere(0.15,slices,stacks);
     glPopMatrix();
+     
+}
+static void 
+display(void)
+{
+    plantPrint();
     glutSwapBuffers();
     
 }

@@ -64,7 +64,7 @@ void plantPrint(void){
     Sunday = (Sunday + 5) % 360;//調太陽自轉角度吧?
     
     
-
+    
   
 
      glPushMatrix();                            //太陽
@@ -147,8 +147,10 @@ void plantPrint(void){
     }
     glEnd();
     
+    
     glBegin(GL_LINE_STRIP);   //火星 的軌道 
     glColor3d(0,1,0);
+    
     x = 0.0f;
     y = 0.0f;
     
@@ -157,11 +159,13 @@ void plantPrint(void){
       for(angle = 0.0f; angle <= (2.0f*3.14159f); angle += step){
         x = radius *sin(angle);
         y = radius *cos(angle);
-
        // Specify the point and move the Z value up a little	
        glVertex3f(x , 0, -20.0f + y);  // x-z軸圓 
+       
     }
+    
     glEnd();
+    
     
     glPushMatrix();                            //火星 
         glColor3d(1,0,0);
@@ -181,13 +185,35 @@ display(void)
     glColor3d(1,0,0);
     glEnable(GL_DEPTH_TEST);
     glClearColor (0.0, 0.0, 0.0, 0.0);
+    
+    
+    
+    glLoadIdentity();
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(-10, 10, -10, 10, -10, 10);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(1.0, 3.0, -20.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0);
+    glViewport(0,240,320,240);
+    gluLookAt(1.0, 2.0, -20.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0);
+    
     plantPrint();
+    
+    
+    glLoadIdentity();
+    
+    glViewport(0,0,320,240);
+    gluLookAt(0.0, 0.0, -10.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0);
+    
+    plantPrint();
+    
+    
+    
+    
+    
+    
+    
+    
     glutSwapBuffers();
     
 }

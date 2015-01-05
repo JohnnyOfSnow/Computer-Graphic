@@ -175,6 +175,51 @@ void plantPrint(void){
            glRotatef(FirePlantday, 0.0, 0.0, 1.0); //自轉 (速度, 旋轉向量)
            glutWireSphere(0.15,slices,stacks);
     glPopMatrix();
+    
+    glBegin(GL_LINE_STRIP);   //x 軸 
+    glColor3d(0,1,0);
+    
+      float i;
+    
+      radius = 9.0f;     //radius
+      step = 0.1f;        //step?
+      for(i = -10.0f; i <= 10.0f; i += step){
+        	
+       glVertex3f(i , 0, 0);  // x-z軸圓 
+       
+    }
+    
+    glEnd();
+    
+    glBegin(GL_LINE_STRIP);   //y 軸 
+    glColor3d(1,0,0);
+    
+      float j;
+    
+      radius = 9.0f;     //radius
+      step = 0.1f;        //step?
+      for(j = -10.0f; j <= 10.0f; j += step){
+        	
+       glVertex3f(0 , j, 0);  // x-z軸圓 
+       
+    }
+    
+    glEnd();
+    
+    glBegin(GL_LINE_STRIP);   //z 軸 
+    glColor3d(0,0,1);
+    
+      float k;
+    
+      radius = 9.0f;     //radius
+      step = 0.1f;        //step?
+      for(k = -10.0f; k <= 10.0f; k += step){
+        	
+       glVertex3f(0 , 0, k);  
+       
+    }
+    
+    glEnd();
      
 }
 static void 

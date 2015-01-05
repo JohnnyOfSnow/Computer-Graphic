@@ -191,11 +191,11 @@ display(void)
     glLoadIdentity();
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-10, 10, -10, 10, -10, 10);
+    glOrtho(-15, 15, -15, 15, -15, 15);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glViewport(0,240,320,240);
-    gluLookAt(1.0, 2.0, -20.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0);
+    gluLookAt(2.0, 10.0, -20.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0);
     
     plantPrint();
     
@@ -207,7 +207,12 @@ display(void)
     
     plantPrint();
     
+    glLoadIdentity();
     
+    glViewport(320,0,320,240);
+    gluLookAt(1.5, 1.5, -10.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0);
+    
+    plantPrint();
     
     
     

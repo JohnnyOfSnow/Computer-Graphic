@@ -255,7 +255,7 @@ display(void)
     glLoadIdentity();
     
     glViewport(320,0,320,240);
-    gluLookAt(1.5, 1.5, -10.0,0.0, 0.0, -20.0,0.0, 1.0, 0.0); // 透視圖 
+    gluLookAt((1 / sqrt(3)),(1 / sqrt(3)), -20.0 + (1 / sqrt(3)),0.0, 0.0, -20.0,0.0, 1.0, 0.0); // 透視圖 
     
     plantPrint();
     
